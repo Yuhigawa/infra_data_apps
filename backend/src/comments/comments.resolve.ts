@@ -29,7 +29,7 @@ export class CommentsResolver {
     async addComment(
         @Args('newCommentData') newCommentData: NewCommentInput,
     ): Promise<Comment> {
-        const comment = await this.commentsService.create(NewCommentInput);
+        const comment = await this.commentsService.create(newCommentData);
 
         return comment;
     }

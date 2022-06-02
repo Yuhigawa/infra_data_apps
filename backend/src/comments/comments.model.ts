@@ -6,10 +6,13 @@ export class Comment {
     id: string;
 
     @Field()
+    user_Id: string;
+
+    @Field()
     comment: string;
 
-    @Field({nullable: true})
-    attachment?: string
+    @Field(type => [String], {nullable: true})
+    attachment?: string[]
 
     @Field()
     creationDate: Number;

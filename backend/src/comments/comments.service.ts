@@ -12,15 +12,11 @@ export class CommentsService {
   async create(data: NewCommentInput): Promise<Comment> {
     let __id: string = randomUUID();
 
-    console.log("data: ", data);
-
     let mock_data: Comment = {
       id: __id,
       creationDate: Date.now(),
       ...data
     }
-
-    console.log("mockdata: ", mock_data);
 
     this.data.push(mock_data);
 
@@ -35,8 +31,9 @@ export class CommentsService {
 
     return {
       id: "",
+      user_Id: "",
       comment: "",
-      attachment: "",
+      attachment: [],
       creationDate: 0
     }
   }
