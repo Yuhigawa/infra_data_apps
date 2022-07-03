@@ -11,7 +11,7 @@ export class NewCommentInput {
   @Field({ nullable: false })
   @MaxLength(200)
   @MinLength(1)
-  user_Id: string;
+  user_id: string;
 
   @Field(type => [String], { nullable: true })
   @IsOptional()

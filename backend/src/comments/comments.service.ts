@@ -31,7 +31,7 @@ export class CommentsService {
 
     return {
       id: "",
-      user_Id: "",
+      user_id: "",
       comment: "",
       attachment: [],
       creationDate: 0

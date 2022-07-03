@@ -6,7 +6,7 @@ export class Comment {
     id: string;
 
     @Field()
-    user_Id: string;
+    user_id: string;
 
     @Field()
     comment: string;
