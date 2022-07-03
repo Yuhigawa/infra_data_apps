@@ -23,12 +23,33 @@ export class UsersService {
     return mock_data;
   }
 
-  async findOneById(id: string): Promise<User> {
-    let user_index = this.data.findIndex( el => el.id === id );
+  async update_comment(id: string, comment: string): Promise<User> {
+    let user_index = this.data.findIndex(el => el.id === id);
 
-    if( user_index > 0 )
+    if (user_index >= 0) {
+      this.data[user_index].comments.push(comment);
+
+      return this.data[user_index];
+    }
+
+    return {
+      id: "",
+      name: "",
+      password: "",
+      creationDate: 0,
+      comments: [],
+      description: "",
+      image: ""
+    }
+  }
+
+  async findOneById(id: string): Promise<User> {
+    let user_index = this.data.findIndex(el => el.id === id);
+
+    if (user_index >= 0)
       return this.data[user_index];
 
+    // return false;
     return {
       id: "",
       name: "",
@@ -44,13 +65,13 @@ export class UsersService {
     return this.data;
   }
 
-  async remove(id: string): Promise<boolean> {
-    let user_index = this.data.findIndex( el => el.id === id );
+  async remove(id: string): Promise<User[] | boolean> {
+    let user_index = this.data.findIndex(el => el.id === id);
 
-    if( user_index > 0 ) {
+    if (user_index > 0) {
       this.data.splice(user_index, 1);
 
-      return true;
+      return this.data;
     }
 
     return false;
