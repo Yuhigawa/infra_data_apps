@@ -10,7 +10,9 @@ export class UsersResolver {
     constructor(private readonly usersService: UsersService) { }
 
     @Query(returns => User)
-    async user(@Args('id') id: string): Promise<User> {
+    async user(
+        @Args('id') id: string
+    ): Promise<User> {
         const user = await this.usersService.findOneById(id);
         
         if (!user) {
@@ -21,21 +23,25 @@ export class UsersResolver {
     }
 
     @Query(returns => [User])
-    users(@Args() UsersArgs: UsersArgs): Promise<User[]> {
+    users(
+        @Args() UsersArgs: UsersArgs
+    ): Promise<User[]> {
         return this.usersService.findAll(UsersArgs);
     }
 
     @Mutation(returns => User)
     async addUser(
-        @Args('newUserData') newUserData: NewUserInput,
+        @Args('newUserData') newUserData: NewUserInput
     ): Promise<User> {
         const user = await this.usersService.create(newUserData);
 
         return user;
     }
 
-    @Mutation(returns => Boolean)
-    async removeUser(@Args('id') id: string) {
+    @Mutation(returns => [User])
+    async removeUser(
+        @Args('id') id: string
+    ): Promise<User[] | Boolean> {
         return this.usersService.remove(id);
     }
 }
